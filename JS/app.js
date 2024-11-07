@@ -1,5 +1,3 @@
-const personas = [];
-
 const continuar = true;
 while (continuar) {
     const nombre = prompt("Ingrese su nombre:");
