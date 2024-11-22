@@ -1,0 +1,32 @@
+body {
+    margin: 0;
+    background-color: rgb(217, 213, 213);
+}
+
+/*INICIO*/
+header {
+    text-align: center;
+    color: white;
+    background-color: gray;
+    border-top: solid 4rem black;
+    padding: 2%;
+}
+
+h1 {
+    font-size: 3rem;
+    font-family: serif;
+    text-decoration: underline overline;
+}
+
+nav {
+    margin-top: 3rem;
+}
+
+.btn {
+    height: 5rem;
+    width: 6rem;
+}
+
+.dropdown-menu {
+    height: 5rem;
+}
