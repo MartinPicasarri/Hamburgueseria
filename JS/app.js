@@ -1,3 +1,24 @@
+function InicioUsuario() {
+    let usuario, apellido, ubicacion, telefono;
+    let telefonoValido = false;
+  
+    do {
+      usuario = prompt("Ingrese su usuario");
+      apellido = prompt("Ingrese su apellido");
+      ubicacion = prompt("Ingrese su ubicacion/zona");
+      telefono = prompt("Ingrese su telefono");
+  
+      telefonoValido = !isNaN(telefono); 
+      if (!telefonoValido) {
+        alert("El número de teléfono debe contener solo números. Intente nuevamente.");
+      }
+    } while (!telefonoValido);
+  
+    alert("Su usuario es " + usuario + " " + apellido + " y vive en " + ubicacion + ". Su teléfono es " + telefono);
+  }
+  
+  InicioUsuario();
+
 class Hamburguesa {
     constructor (nombre="", descripcion="", precio=0){
         this.nombre = nombre;
@@ -29,4 +50,3 @@ function filtrarHamburguesasPorPrecio(menu, precioMaximo) {
 }
 const hamburguesasCostos = filtrarHamburguesasPorPrecio(menuHamburguesa, 10000);
 console.log(hamburguesasCostos);
-
