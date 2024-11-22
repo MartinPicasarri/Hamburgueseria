@@ -3,7 +3,38 @@ body {
     background-color: rgb(217, 213, 213);
 }
 
-/*INICIO*/
+/*NAV*/
+nav {
+    margin-top: 3rem;
+}
+
+.btn {
+    height: 3rem;
+    width: 5rem;
+    background: #000000;
+}
+
+.dropdown-menu {
+    height: 3rem;
+    width: 15rem;
+    background: gray;
+}
+
+.dropdown-menu li {
+    display: inline-block;
+    padding: 0px 25px;
+    font: 1em sans-serif;
+}
+
+.dropdown-menu li a {
+    text-decoration: none;
+    color: black;
+}
+.dropdown-menu a:hover {
+    color: white;
+}
+
+/*PAGINA INICIO*/
 header {
     text-align: center;
     color: white;
@@ -18,15 +49,106 @@ h1 {
     text-decoration: underline overline;
 }
 
-nav {
+/*MAIN*/
+#menu {
+    margin-top: 3rem;
+    height: 800px;   /*Despues cambiar, dejar asi para que quede bien el footer*/
+}
+
+#menu h3 {
     margin-top: 3rem;
 }
 
-.btn {
-    height: 5rem;
-    width: 6rem;
+/*PAGINA CONTACTO*/
+#grilla-contactanos {
+    margin-top: 3rem;
+    margin-bottom: 10rem;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 600px;
 }
 
-.dropdown-menu {
-    height: 5rem;
+#lugar {
+    text-align: center;
+  }
+  
+#lugar iframe {
+    width: 90%;
+    height: 600px;
+  }
+
+#contacto {
+    justify-self: center;
+    font-family: inherit;
+    background-color: grey;
+    padding: 10% 10% 10% 10%;
+    height: auto;
+  }
+
+#contacto h4 {
+    line-height: 5rem;
 }
+
+/*FOOTER*/
+footer {
+    margin: 0px;
+    background-color: #000000;;
+    padding: 10px 0;
+    text-align: center;
+    color: white;
+}
+
+#grilla {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8rem;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+#grilla div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#area1 img{
+    width: 14rem;
+    height: 14rem;
+}
+
+#area2 p {
+    margin: 5px 0;
+    font-size: 18px;
+}
+
+#area2 p a {
+    color: white;
+    text-decoration: none;
+}
+
+#area3{
+    width: max-content;
+}
+
+#area3 ul {
+    list-style: none;
+    padding: 0;
+}
+
+#area3 ul li {
+    margin: 10px 0;
+}
+
+#area3 ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+#area3 ul li a:hover {
+    color: aqua;
+}
+
