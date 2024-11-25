@@ -14,7 +14,7 @@ function InicioUsuario() {
       }
     } while (!telefonoValido);
   
-    alert("Su usuario es " + usuario + " " + apellido + " y vive en " + ubicacion + ". Su teléfono es " + telefono);
+    alert(`Su usuario es ${usuario} ${apellido} y vive en ${ubicacion}. Su teléfono es ${telefono}`);
   }
   
   InicioUsuario();
