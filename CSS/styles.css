@@ -50,9 +50,8 @@ h1 {
 }
 
 /*MAIN*/
-#menu {
+main {
     margin-top: 3rem;
-    height: 800px;   /*Despues cambiar, dejar asi para que quede bien el footer*/
 }
 
 #menu h3 {
@@ -151,4 +150,3 @@ footer {
 #area3 ul li a:hover {
     color: aqua;
 }
-

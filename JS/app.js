@@ -26,7 +26,6 @@ class Hamburguesa {
         this.precio = precio;
     }
 }
-
 const HamburguesaClasica = new Hamburguesa ("Clasica","Contiene pan de papa, medallon de carne y queso cheddar x2", 9800 );
 const HamburguesaVegetariana = new Hamburguesa ("Vegetariana","Contiene pan de papa, medallon de verduras y queso cheddar x2", 9500 );
 const HamburguesaBacon = new Hamburguesa ("Bacon","Contiene pan de papa, medallon de carne con panceta x2 y queso cheddar x2", 11000 );
@@ -37,16 +36,30 @@ const HamburguesaBlueCheese = new Hamburguesa ("Blue Cheese","Contiene pan de pa
 
 const menuHamburguesa = [HamburguesaClasica, HamburguesaVegetariana, HamburguesaBacon, HamburguesaConPollo, HamburguesaCheese, HamburguesaChili, HamburguesaBlueCheese];
 
-function mostrarMenu(menu){
-    menu.forEach(hamburguesa => {
-        console.log(`${hamburguesa.nombre} - $${hamburguesa.precio}`);
-        console.log(hamburguesa.descripcion);
-      });
-    }
-mostrarMenu(menuHamburguesa);
+function crearMenu() {
+  const menuHamburguesas = document.getElementById("menu-hamburguesas");
+  menuHamburguesa.forEach(hamburguesa => {
+      const hamburguesaElement = document.createElement("div");
+      hamburguesaElement.innerHTML = `
+          <h3>${hamburguesa.nombre} - $${hamburguesa.precio}
+          <p>${hamburguesa.descripcion}</p>
+      `;
+      menuHamburguesas.appendChild(hamburguesaElement);
+  });
+}
+
+function mostrarMenu(menu) {
+  menu.forEach(hamburguesa => {
+      console.log(`${hamburguesa.nombre} - $${hamburguesa.precio}`);
+      console.log(hamburguesa.descripcion);
+  });
+}
 
 function filtrarHamburguesasPorPrecio(menu, precioMaximo) {
     return menu.filter(hamburguesa => hamburguesa.precio <= precioMaximo);
 }
 const hamburguesasCostos = filtrarHamburguesasPorPrecio(menuHamburguesa, 10000);
 console.log(hamburguesasCostos);
+
+crearMenu();
+mostrarMenu(menuHamburguesa);
