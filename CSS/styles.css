@@ -50,12 +50,34 @@ h1 {
 }
 
 /*MAIN*/
-main {
+#menu {
     margin-top: 3rem;
+    height: auto;
 }
 
-#menu h3 {
+#menu h2 {
     margin-top: 3rem;
+    text-decoration: underline;
+
+}
+
+/*MENU DE HAMBURGUESAS*/
+.btn-primary {
+    width: 100%;
+    margin-block: 2rem;
+    height: 5rem;
+    font-size: 2rem;
+}
+
+.hamburguesa-detalles {
+    height: 0;
+    overflow: hidden;
+    transition: height 0.3s ease-in-out;
+    background-color: gray;
+}
+
+.mostrar-detalles {
+    height: auto;
 }
 
 /*PAGINA CONTACTO*/
@@ -91,6 +113,7 @@ main {
 /*FOOTER*/
 footer {
     margin: 0px;
+    margin-top: 3rem;
     background-color: #000000;;
     padding: 10px 0;
     text-align: center;
