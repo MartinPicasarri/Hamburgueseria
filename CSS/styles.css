@@ -57,6 +57,7 @@ h1 {
 
 #menu h2 {
     margin-top: 3rem;
+    margin-left: 1rem;
     text-decoration: underline;
 
 }
@@ -78,6 +79,11 @@ h1 {
 
 .mostrar-detalles {
     height: auto;
+}
+
+/*MENU DE EXTRAS*/
+#menu-extras {
+    margin-left: 1rem;
 }
 
 /*PAGINA CONTACTO*/
