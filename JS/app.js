@@ -28,15 +28,15 @@ class Hamburguesa {
         this.imagen = "";
     }
 }
-const HamburguesaClasica = new Hamburguesa ("Clasica","Contiene pan de papa, medallon de carne y queso cheddar x2. Acompañada con papas fritas.", 9800, "CLASICA", "../IMG/clasica.jpg");
-const HamburguesaVegetariana = new Hamburguesa ("Vegetariana","Contiene pan de papa, medallon de verduras y queso cheddar x2. Acompañada con papas fritas.", 9500, "VEGETARIANA", "../IMG/vegetariana.jpg");
-const HamburguesaBacon = new Hamburguesa ("Bacon","Contiene pan de papa, medallon de carne con panceta x2 y queso cheddar x2. Acompañada con papas fritas.", 11000, "BACON", "../IMG/bacon.jpg");
-const HamburguesaConPollo = new Hamburguesa ("Pollo","Contiene pan de papa, medallon de pollo x2 y queso cheddar x2. Acompañada con papas fritas.", 10000, "POLLO", "../IMG/pollo.jpg");
-const HamburguesaCheese = new Hamburguesa ("Cheese","Contiene pan de papa, medallon de carne x2 con queso cheddar x2. Acompañada con papas fritas.", 12000, "CHEESE", "../IMG/cheese.jpg");
-const HamburguesaChili = new Hamburguesa ("Chili","Contiene pan de papa, medallon de carne x2, salsa picante y queso cheddar x2, acompanada con papas fritas.", 12500, "CHILI", "../IMG/chili.jpg");
-const HamburguesaBlueCheese = new Hamburguesa ("Blue Cheese","Contiene pan de papa, medallon de carne x2 y queso azul x2. Acompañada con papas fritas", 13000, "BLUECHEESE", "../IMG/bluecheese.jpg");
-const hamburguesaBBQ = new Hamburguesa ("BBQ","Contiene pan de papa, medallon de carne x2, salsa BBQ y queso cheddar x2. Acompañada con papas fritas.", 11500, "BBQ", "../IMG/bbq.jpg");
-const HamburguesaBigBurguer= new Hamburguesa ("Big Burguer","Contiene pan de papa, medallon de carne x3, cebolla caramelizada, bacon y queso cheddar x3. Acompañada con papas fritas.", 13000, "BIG-BURGUER", "../IMG/bigburguer.jpg");
+const HamburguesaClasica = new Hamburguesa ("Clasica","Contiene pan de papa, medallon de carne, tomate, lechuga y queso cheddar. Acompañada con papas fritas.", 9800, "CLASICA", "../IMG/hamburguesa-clasica.jpeg");
+const HamburguesaVegetariana = new Hamburguesa ("Vegetariana","Contiene pan de papa, medallon de verduras, pepino, lechuga y queso cheddar x2. Acompañada con papas fritas.", 9500, "VEGETARIANA", "../IMG/hamburguesa-vegetariana.jpeg");
+const HamburguesaBacon = new Hamburguesa ("Bacon","Contiene pan de papa, medallon de carne con panceta x2 y queso cheddar x2. Acompañada con papas fritas.", 11000, "BACON", "../IMG/hamburguesa-bacon.jpeg");
+const HamburguesaConPollo = new Hamburguesa ("Pollo","Contiene pan de papa, medallon de pollo x2 y queso cheddar x2. Acompañada con papas fritas.", 10000, "POLLO", "../IMG/hamburguesa-pollo.jpeg");
+const HamburguesaCheese = new Hamburguesa ("Cheese","Contiene pan de papa, medallon de carne x2 y con extra queso cheddar. Acompañada con papas fritas.", 12000, "CHEESE", "../IMG/hamburguesa-cheese.jpeg");
+const HamburguesaChili = new Hamburguesa ("Chili","Contiene pan de papa, medallon de carne x2, pepino,salsa picante y queso cheddar x2, acompanada con papas fritas.", 12500, "CHILI", "../IMG/hamburguesa-chili.jpeg");
+const HamburguesaBlueCheese = new Hamburguesa ("Blue Cheese","Contiene pan de papa, lechuga, medallon de carne x2 y queso azul. Acompañada con papas fritas", 10500, "BLUECHEESE", "../IMG/hamburguesa-bluecheese.jpeg");
+const hamburguesaBBQ = new Hamburguesa ("BBQ","Contiene pan de papa, medallon de carne x2, salsa BBQ y queso cheddar x2. Acompañada con papas fritas.", 11500, "BBQ", "../IMG/hamburguesa-bbq.jpeg");
+const HamburguesaBigBurguer= new Hamburguesa ("Big Burguer","Contiene pan de papa, medallon de carne x3, cebolla caramelizada, bacon y queso cheddar x3. Acompañada con papas fritas.", 13000, "BIG-BURGUER", "../IMG/hamburguesa-bigburguer.jpeg");
 
 const menuHamburguesa = [HamburguesaClasica, HamburguesaVegetariana, HamburguesaBacon, HamburguesaConPollo, HamburguesaCheese, HamburguesaChili, HamburguesaBlueCheese, hamburguesaBBQ, HamburguesaBigBurguer];
 
@@ -46,14 +46,15 @@ function crearMenu() {
   menuHamburguesa.forEach(hamburguesa => {
       const hamburguesaElement = document.createElement("div");
       hamburguesaElement.classList.add("hamburguesa");
+      
 
       hamburguesaElement.innerHTML = `
-      <button class="btn btn-primary agregar-al-carrito">${hamburguesa.boton}</button>    
-      <div class="hamburguesa-detalles">
+        <button class="btn btn-primary agregar-al-carrito">${hamburguesa.boton}</button>    
+        <div class="hamburguesa-detalles">
               <img src="${hamburguesa.imagen}" alt="${hamburguesa.nombre}">
               <h3>${hamburguesa.nombre} - $${hamburguesa.precio}</h3>
               <p>${hamburguesa.descripcion}</p>
-          </div>
+        </div>
       `;
 
       menuHamburguesas.appendChild(hamburguesaElement);
@@ -79,11 +80,11 @@ const MedallondePollo = new Extras ("Medallon de pollo","Agrega un medallon de p
 const Nuggets = new Extras ("Nuggets","Agrega Nuggets x12", 1000);
 const CebollaCaramelizada = new Extras ("Cebolla caramelizada","Agrega cebolla caramelizada", 1000);
 const Bacon = new Extras ("Bacon","Agrega panceta", 1000);
-const QuesoCheddar = new Extras ("Queso cheddar","Agrega queso cheddar", 1000);
+const PapasconCheddar = new Extras ("Papas con queso cheddar","Agrega papas con queso cheddar", 1000);
 const SalsaBBQ = new Extras ("Salsa BBQ","Agrega salsa BBQ", 1000);
 const SalsaPicante = new Extras ("Salsa picante","Agrega salsa picante", 1000);
 
-const menuExtras = [MedallondeCarne, MedallondePollo, Nuggets, CebollaCaramelizada, Bacon, QuesoCheddar, SalsaBBQ, SalsaPicante];
+const menuExtras = [MedallondeCarne, MedallondePollo, Nuggets, CebollaCaramelizada, Bacon, PapasconCheddar, SalsaBBQ, SalsaPicante];
 
 function crearExtras() {
     const menuExtrasElement = document.getElementById("menu-extras");
