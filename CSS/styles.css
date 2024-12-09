@@ -84,6 +84,13 @@ h1 {
 /*MENU DE EXTRAS*/
 #menu-extras {
     margin-left: 1rem;
+    background-color: gray;
+    width: fit-content;
+    text-align: center;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    line-height: 2rem;
+    justify-self: center;
 }
 
 /*PAGINA CONTACTO*/

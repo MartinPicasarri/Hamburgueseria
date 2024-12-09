@@ -1,24 +1,3 @@
-/*function InicioUsuario() {
-    let usuario, apellido, ubicacion, telefono;
-    let telefonoValido = false;
-  
-    do {
-      usuario = prompt("Ingrese su usuario");
-      apellido = prompt("Ingrese su apellido");
-      ubicacion = prompt("Ingrese su ubicacion/zona");
-      telefono = prompt("Ingrese su telefono");
-  
-      telefonoValido = !isNaN(telefono); 
-      if (!telefonoValido) {
-        alert("El número de teléfono debe contener solo números. Intente nuevamente.");
-      }
-    } while (!telefonoValido);
-  
-    alert(`Su usuario es ${usuario} ${apellido} y vive en ${ubicacion}. Su teléfono es ${telefono}`);
-  }
-  
-  InicioUsuario();*/
-
 class Hamburguesa {
     constructor (nombre="", descripcion="", precio=0, boton="", imagen="") {
         this.nombre = nombre;
@@ -28,6 +7,40 @@ class Hamburguesa {
         this.imagen = "";
     }
 }
+
+class Extras {
+  constructor (nombre="", descripcion="", precio=0,) {
+      this.nombre = nombre;
+      this.descripcion = descripcion;
+      this.precio = precio;
+  }
+}
+
+class Carrito {
+  constructor() {
+      this.items = new Map();
+  }
+
+  agregarItem(hamburguesa) {
+      const cantidad = this.items.get(hamburguesa.nombre) || 0;
+      this.items.set(hamburguesa.nombre, cantidad + 1);
+  }
+
+  quitarItem(hamburguesa) {
+      const cantidad = this.items.get(hamburguesa.nombre) || 0;
+      if (cantidad > 0) {
+          this.items.set(hamburguesa.nombre, cantidad - 1);
+          if (this.items.get(hamburguesa.nombre) === 0) {
+              this.items.delete(hamburguesa.nombre);
+          }
+      }
+  }
+
+  obtenerCantidad(hamburguesa) {
+      return this.items.get(hamburguesa.nombre) || 0;
+  }
+}
+
 const HamburguesaClasica = new Hamburguesa ("Clasica","Contiene pan de papa, medallon de carne, tomate, lechuga y queso cheddar. Acompañada con papas fritas.", 9800, "CLASICA", "../IMG/hamburguesa-clasica.jpeg");
 const HamburguesaVegetariana = new Hamburguesa ("Vegetariana","Contiene pan de papa, medallon de verduras, pepino, lechuga y queso cheddar x2. Acompañada con papas fritas.", 9500, "VEGETARIANA", "../IMG/hamburguesa-vegetariana.jpeg");
 const HamburguesaBacon = new Hamburguesa ("Bacon","Contiene pan de papa, medallon de carne con panceta x2 y queso cheddar x2. Acompañada con papas fritas.", 11000, "BACON", "../IMG/hamburguesa-bacon.jpeg");
@@ -40,41 +53,6 @@ const HamburguesaBigBurguer= new Hamburguesa ("Big Burguer","Contiene pan de pap
 
 const menuHamburguesa = [HamburguesaClasica, HamburguesaVegetariana, HamburguesaBacon, HamburguesaConPollo, HamburguesaCheese, HamburguesaChili, HamburguesaBlueCheese, hamburguesaBBQ, HamburguesaBigBurguer];
 
-function crearMenu() {
-  const menuHamburguesas = document.getElementById("menu-hamburguesas");
-
-  menuHamburguesa.forEach(hamburguesa => {
-      const hamburguesaElement = document.createElement("div");
-      hamburguesaElement.classList.add("hamburguesa");
-      
-
-      hamburguesaElement.innerHTML = `
-        <button class="btn btn-primary agregar-al-carrito">${hamburguesa.boton}</button>    
-        <div class="hamburguesa-detalles">
-              <img src="${hamburguesa.imagen}" alt="${hamburguesa.nombre}">
-              <h3>${hamburguesa.nombre} - $${hamburguesa.precio}</h3>
-              <p>${hamburguesa.descripcion}</p>
-        </div>
-      `;
-
-      menuHamburguesas.appendChild(hamburguesaElement);
-
-      const agregarButton = hamburguesaElement.querySelector(".agregar-al-carrito");
-      agregarButton.addEventListener('click', () => {
-          const detalles = hamburguesaElement.querySelector(".hamburguesa-detalles");
-          detalles.classList.toggle("mostrar-detalles");
-      });
-  });
-}
-
-
-class Extras {
-    constructor (nombre="", descripcion="", precio=0,) {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-    }
-}
 const MedallondeCarne = new Extras ("Medallon de carne","Agrega un medallon de carne", 1000);
 const MedallondePollo = new Extras ("Medallon de pollo","Agrega un medallon de pollo", 1000);
 const Nuggets = new Extras ("Nuggets","Agrega Nuggets x12", 1000);
@@ -86,24 +64,111 @@ const SalsaPicante = new Extras ("Salsa picante","Agrega salsa picante", 1000);
 
 const menuExtras = [MedallondeCarne, MedallondePollo, Nuggets, CebollaCaramelizada, Bacon, PapasconCheddar, SalsaBBQ, SalsaPicante];
 
-function crearExtras() {
-    const menuExtrasElement = document.getElementById("menu-extras");
+const carrito = new Carrito();
 
-    menuExtras.forEach(extras => {
-        const extrasElement = document.createElement("div");
-        extrasElement.classList.add("extras");
-
-        extrasElement.innerHTML = `
-        <div class="extras-detalles">
-              <h3>${extras.nombre}</h3>
-              <p>${extras.descripcion} - $${extras.precio}</p>
-          </div>
-      `;
-
-        menuExtrasElement.appendChild(extrasElement);
-    });
+function actualizarBotonesCarrito(element, item) {
+  const cantidad = carrito.obtenerCantidad(item);
+  const botonesCarrito = element.querySelector('.botones-carrito');
+  
+  if (botonesCarrito) {
+      const cantidadSpan = botonesCarrito.querySelector('.cantidad');
+      cantidadSpan.textContent = cantidad;
+  }
 }
 
+function crearBotonesCarrito(element, item) {
+  const botonesCarrito = document.createElement('div');
+  botonesCarrito.classList.add('botones-carrito');
+  
+  botonesCarrito.innerHTML = `
+      <button class="btn-quitar">-</button>
+      <span class="cantidad">${carrito.obtenerCantidad(item)}</span>
+      <button class="btn-agregar">+</button>
+  `;
 
-crearMenu();
-crearExtras();
+  const btnAgregar = botonesCarrito.querySelector('.btn-agregar');
+  const btnQuitar = botonesCarrito.querySelector('.btn-quitar');
+
+  btnAgregar.addEventListener('click', (e) => {
+      e.stopPropagation();
+      carrito.agregarItem(item);
+      actualizarBotonesCarrito(element, item);
+  });
+
+  btnQuitar.addEventListener('click', (e) => {
+      e.stopPropagation();
+      carrito.quitarItem(item);
+      actualizarBotonesCarrito(element, item);
+  });
+
+  return botonesCarrito;
+}
+
+function crearHamburguesaElement(hamburguesa) {
+  const hamburguesaElement = document.createElement("div");
+  hamburguesaElement.classList.add("hamburguesa");
+  
+  hamburguesaElement.innerHTML = `
+      <button class="btn btn-primary desplegar">${hamburguesa.boton}</button>    
+      <div class="hamburguesa-detalles">
+          <img src="${hamburguesa.imagen}" alt="${hamburguesa.nombre}">
+          <h3>${hamburguesa.nombre} - $${hamburguesa.precio}</h3>
+          <p>${hamburguesa.descripcion}</p>
+      </div>
+  `;
+
+  const detalles = hamburguesaElement.querySelector(".hamburguesa-detalles");
+  const botonesCarrito = crearBotonesCarrito(hamburguesaElement, hamburguesa);
+  detalles.appendChild(botonesCarrito);
+
+  const agregarButton = hamburguesaElement.querySelector(".desplegar");
+  agregarButton.addEventListener('click', () => {
+      detalles.classList.toggle("mostrar-detalles");
+  });
+
+  return hamburguesaElement;
+}
+
+function crearExtraElement(extra) {
+  const extraElement = document.createElement("div");
+  extraElement.classList.add("extras");
+
+  extraElement.innerHTML = `
+      <div class="extras-detalles">
+        <h3>${extra.nombre}</h3>
+        <p>${extra.descripcion} - $${extra.precio}</p>
+      </div>
+  `;
+
+  const botonesCarrito = crearBotonesCarrito(extraElement, extra);
+  extraElement.querySelector('.extras-detalles').appendChild(botonesCarrito);
+
+  return extraElement;
+}
+
+// Menu Creation Functions
+function crearMenuHamburguesas() {
+  const menuHamburguesasElement = document.getElementById("menu-hamburguesas");
+  if (!menuHamburguesasElement) return;
+
+  menuHamburguesa.forEach(hamburguesa => {
+      const hamburguesaElement = crearHamburguesaElement(hamburguesa);
+      menuHamburguesasElement.appendChild(hamburguesaElement);
+  });
+}
+
+function crearMenuExtras() {
+  const menuExtrasElement = document.getElementById("menu-extras");
+  if (!menuExtrasElement) return;
+
+  menuExtras.forEach(extra => {
+      const extraElement = crearExtraElement(extra);
+      menuExtrasElement.appendChild(extraElement);
+  });
+}
+
+// Initialize
+document.addEventListener('DOMContentLoaded', () => {
+  crearMenuHamburguesas();
+  crearMenuExtras();
+});
