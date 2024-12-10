@@ -146,7 +146,6 @@ function crearExtraElement(extra) {
   return extraElement;
 }
 
-// Menu Creation Functions
 function crearMenuHamburguesas() {
   const menuHamburguesasElement = document.getElementById("menu-hamburguesas");
   if (!menuHamburguesasElement) return;
@@ -167,7 +166,6 @@ function crearMenuExtras() {
   });
 }
 
-// Initialize
 document.addEventListener('DOMContentLoaded', () => {
   crearMenuHamburguesas();
   crearMenuExtras();

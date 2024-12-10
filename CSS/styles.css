@@ -62,6 +62,22 @@ h1 {
 
 }
 
+#realizar-pedido {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+#realizar-pedido button {
+    background-color: #000000;
+    width: 12rem;
+    height: 3rem;
+}
+
+#realizar-pedido a {
+    text-decoration: none;
+    color:white;
+}
+
 /*MENU DE HAMBURGUESAS*/
 .btn-primary {
     width: 100%;
@@ -121,6 +137,43 @@ h1 {
 
 #contacto h4 {
     line-height: 5rem;
+}
+
+/*PAGINA PEDIDO*/
+#datos-registro {
+    text-align: center;
+}
+
+#datos-registro form {
+    display: grid;
+    line-height: 3rem;
+    justify-content: center;
+}
+
+#datos-registro input {
+    margin-bottom: 1.5rem;
+    width: 30rem;
+    height: 2rem;
+}
+
+#datos-registro textarea {
+    margin-bottom: 1.5rem;
+}
+
+/*BOTONES CARRITO*/
+.botones-carrito {
+    text-align: end;
+    margin-right: 7rem;
+}
+
+.btn-quitar {
+    width: 3rem;
+    background-color: rgb(182, 39, 39);
+}
+
+.btn-agregar {
+    width: 3rem;
+    background-color: green;
 }
 
 /*FOOTER*/
