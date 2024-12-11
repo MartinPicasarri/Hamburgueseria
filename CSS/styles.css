@@ -97,6 +97,13 @@ h1 {
     height: auto;
 }
 
+img {
+    width: 12rem;
+    height: 12rem;
+    float: inline-end;
+    margin-right: 1rem;
+}
+
 /*MENU DE EXTRAS*/
 #menu-extras {
     margin-left: 1rem;
@@ -105,6 +112,7 @@ h1 {
     text-align: center;
     padding-left: 3rem;
     padding-right: 3rem;
+    padding-bottom: 1rem;
     line-height: 2rem;
     justify-self: center;
 }

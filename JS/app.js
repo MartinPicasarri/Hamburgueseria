@@ -1,44 +1,69 @@
 class Hamburguesa {
-    constructor (nombre="", descripcion="", precio=0, boton="", imagen="") {
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.boton = boton;
-        this.imagen = "";
-    }
-}
-
-class Extras {
-  constructor (nombre="", descripcion="", precio=0,) {
+  constructor (nombre="", descripcion="", precio=0, boton="", imagen="") {
       this.nombre = nombre;
       this.descripcion = descripcion;
       this.precio = precio;
+      this.boton = boton;
+      this.imagen = imagen;
   }
 }
 
+class Extras {
+constructor (nombre="", descripcion="", precio=0,) {
+    this.nombre = nombre;
+    this.descripcion = descripcion;
+    this.precio = precio;
+}
+}
+
 class Carrito {
-  constructor() {
-      this.items = new Map();
-  }
+constructor() {
+    this.items = new Map();
+    this.cargarDeLocalStorage();
+}
 
-  agregarItem(hamburguesa) {
-      const cantidad = this.items.get(hamburguesa.nombre) || 0;
-      this.items.set(hamburguesa.nombre, cantidad + 1);
-  }
+agregarItem(item) {
+    const cantidad = this.items.get(item.nombre) || 0;
+    this.items.set(item.nombre, cantidad + 1);
+    this.guardarEnLocalStorage();
+}
 
-  quitarItem(hamburguesa) {
-      const cantidad = this.items.get(hamburguesa.nombre) || 0;
-      if (cantidad > 0) {
-          this.items.set(hamburguesa.nombre, cantidad - 1);
-          if (this.items.get(hamburguesa.nombre) === 0) {
-              this.items.delete(hamburguesa.nombre);
-          }
-      }
-  }
+quitarItem(item) {
+    const cantidad = this.items.get(item.nombre) || 0;
+    if (cantidad > 0) {
+        this.items.set(item.nombre, cantidad - 1);
+        if (this.items.get(item.nombre) === 0) {
+            this.items.delete(item.nombre);
+        }
+        this.guardarEnLocalStorage();
+    }
+}
 
-  obtenerCantidad(hamburguesa) {
-      return this.items.get(hamburguesa.nombre) || 0;
-  }
+obtenerCantidad(item) {
+    return this.items.get(item.nombre) || 0;
+}
+
+calcularTotal() {
+    let total = 0;
+    for (let [nombre, cantidad] of this.items) {
+        const item = [...menuHamburguesa, ...menuExtras].find(i => i.nombre === nombre);
+        if (item) {
+            total += item.precio * cantidad;
+        }
+    }
+    return total;
+}
+
+guardarEnLocalStorage() {
+    localStorage.setItem('carrito', JSON.stringify(Array.from(this.items.entries())));
+}
+
+cargarDeLocalStorage() {
+    const carritoGuardado = localStorage.getItem('carrito');
+    if (carritoGuardado) {
+        this.items = new Map(JSON.parse(carritoGuardado));
+    }
+}
 }
 
 const HamburguesaClasica = new Hamburguesa ("Clasica","Contiene pan de papa, medallon de carne, tomate, lechuga y queso cheddar. Acompañada con papas fritas.", 9800, "CLASICA", "../IMG/hamburguesa-clasica.jpeg");
@@ -67,106 +92,123 @@ const menuExtras = [MedallondeCarne, MedallondePollo, Nuggets, CebollaCarameliza
 const carrito = new Carrito();
 
 function actualizarBotonesCarrito(element, item) {
-  const cantidad = carrito.obtenerCantidad(item);
-  const botonesCarrito = element.querySelector('.botones-carrito');
-  
-  if (botonesCarrito) {
-      const cantidadSpan = botonesCarrito.querySelector('.cantidad');
-      cantidadSpan.textContent = cantidad;
-  }
+const cantidad = carrito.obtenerCantidad(item);
+const botonesCarrito = element.querySelector('.botones-carrito');
+
+if (botonesCarrito) {
+    const cantidadSpan = botonesCarrito.querySelector('.cantidad');
+    cantidadSpan.textContent = cantidad;
+}
+actualizarTotalCarrito();
+}
+
+function actualizarTotalCarrito() {
+const totalElement = document.getElementById('total-carrito');
+if (totalElement) {
+    totalElement.textContent = `Total: $${carrito.calcularTotal()}`;
+}
 }
 
 function crearBotonesCarrito(element, item) {
-  const botonesCarrito = document.createElement('div');
-  botonesCarrito.classList.add('botones-carrito');
-  
-  botonesCarrito.innerHTML = `
-      <button class="btn-quitar">-</button>
-      <span class="cantidad">${carrito.obtenerCantidad(item)}</span>
-      <button class="btn-agregar">+</button>
-  `;
+const botonesCarrito = document.createElement('div');
+botonesCarrito.classList.add('botones-carrito');
 
-  const btnAgregar = botonesCarrito.querySelector('.btn-agregar');
-  const btnQuitar = botonesCarrito.querySelector('.btn-quitar');
+botonesCarrito.innerHTML = `
+    <button class="btn-quitar">-</button>
+    <span class="cantidad">${carrito.obtenerCantidad(item)}</span>
+    <button class="btn-agregar">+</button>
+`;
 
-  btnAgregar.addEventListener('click', (e) => {
-      e.stopPropagation();
-      carrito.agregarItem(item);
-      actualizarBotonesCarrito(element, item);
-  });
+const btnAgregar = botonesCarrito.querySelector('.btn-agregar');
+const btnQuitar = botonesCarrito.querySelector('.btn-quitar');
 
-  btnQuitar.addEventListener('click', (e) => {
-      e.stopPropagation();
-      carrito.quitarItem(item);
-      actualizarBotonesCarrito(element, item);
-  });
+btnAgregar.addEventListener('click', (e) => {
+    e.stopPropagation();
+    carrito.agregarItem(item);
+    actualizarBotonesCarrito(element, item);
+});
 
-  return botonesCarrito;
+btnQuitar.addEventListener('click', (e) => {
+    e.stopPropagation();
+    carrito.quitarItem(item);
+    actualizarBotonesCarrito(element, item);
+});
+
+return botonesCarrito;
 }
 
 function crearHamburguesaElement(hamburguesa) {
-  const hamburguesaElement = document.createElement("div");
-  hamburguesaElement.classList.add("hamburguesa");
-  
-  hamburguesaElement.innerHTML = `
-      <button class="btn btn-primary desplegar">${hamburguesa.boton}</button>    
-      <div class="hamburguesa-detalles">
-          <img src="${hamburguesa.imagen}" alt="${hamburguesa.nombre}">
-          <h3>${hamburguesa.nombre} - $${hamburguesa.precio}</h3>
-          <p>${hamburguesa.descripcion}</p>
-      </div>
-  `;
+const hamburguesaElement = document.createElement("div");
+hamburguesaElement.classList.add("hamburguesa");
 
-  const detalles = hamburguesaElement.querySelector(".hamburguesa-detalles");
-  const botonesCarrito = crearBotonesCarrito(hamburguesaElement, hamburguesa);
-  detalles.appendChild(botonesCarrito);
+hamburguesaElement.innerHTML = `
+    <button class="btn btn-primary desplegar">${hamburguesa.boton}</button>    
+    <div class="hamburguesa-detalles">
+        <img src="${hamburguesa.imagen}" alt="${hamburguesa.nombre}">
+        <h3>${hamburguesa.nombre} - $${hamburguesa.precio}</h3>
+        <p>${hamburguesa.descripcion}</p>
+    </div>
+`;
 
-  const agregarButton = hamburguesaElement.querySelector(".desplegar");
-  agregarButton.addEventListener('click', () => {
-      detalles.classList.toggle("mostrar-detalles");
-  });
+const detalles = hamburguesaElement.querySelector(".hamburguesa-detalles");
+const botonesCarrito = crearBotonesCarrito(hamburguesaElement, hamburguesa);
+detalles.appendChild(botonesCarrito);
 
-  return hamburguesaElement;
+const agregarButton = hamburguesaElement.querySelector(".desplegar");
+agregarButton.addEventListener('click', () => {
+    detalles.classList.toggle("mostrar-detalles");
+});
+
+return hamburguesaElement;
 }
 
 function crearExtraElement(extra) {
-  const extraElement = document.createElement("div");
-  extraElement.classList.add("extras");
+const extraElement = document.createElement("div");
+extraElement.classList.add("extras");
 
-  extraElement.innerHTML = `
-      <div class="extras-detalles">
-        <h3>${extra.nombre}</h3>
-        <p>${extra.descripcion} - $${extra.precio}</p>
-      </div>
-  `;
+extraElement.innerHTML = `
+    <div class="extras-detalles">
+      <h3>${extra.nombre}</h3>
+      <p>${extra.descripcion} - $${extra.precio}</p>
+    </div>
+`;
 
-  const botonesCarrito = crearBotonesCarrito(extraElement, extra);
-  extraElement.querySelector('.extras-detalles').appendChild(botonesCarrito);
+const botonesCarrito = crearBotonesCarrito(extraElement, extra);
+extraElement.querySelector('.extras-detalles').appendChild(botonesCarrito);
 
-  return extraElement;
+return extraElement;
 }
 
 function crearMenuHamburguesas() {
-  const menuHamburguesasElement = document.getElementById("menu-hamburguesas");
-  if (!menuHamburguesasElement) return;
+const menuHamburguesasElement = document.getElementById("menu-hamburguesas");
+if (!menuHamburguesasElement) return;
 
-  menuHamburguesa.forEach(hamburguesa => {
-      const hamburguesaElement = crearHamburguesaElement(hamburguesa);
-      menuHamburguesasElement.appendChild(hamburguesaElement);
-  });
+menuHamburguesa.forEach(hamburguesa => {
+    const hamburguesaElement = crearHamburguesaElement(hamburguesa);
+    menuHamburguesasElement.appendChild(hamburguesaElement);
+});
 }
 
 function crearMenuExtras() {
-  const menuExtrasElement = document.getElementById("menu-extras");
-  if (!menuExtrasElement) return;
+const menuExtrasElement = document.getElementById("menu-extras");
+if (!menuExtrasElement) return;
 
-  menuExtras.forEach(extra => {
-      const extraElement = crearExtraElement(extra);
-      menuExtrasElement.appendChild(extraElement);
-  });
+menuExtras.forEach(extra => {
+    const extraElement = crearExtraElement(extra);
+    menuExtrasElement.appendChild(extraElement);
+});
+}
+
+function crearTotalCarrito() {
+const totalCarritoElement = document.createElement('div');
+totalCarritoElement.id = 'total-carrito';
+totalCarritoElement.textContent = `Total: $${carrito.calcularTotal()}`;
+document.body.appendChild(totalCarritoElement);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  crearMenuHamburguesas();
-  crearMenuExtras();
+crearMenuHamburguesas();
+crearMenuExtras();
+crearTotalCarrito();
+actualizarTotalCarrito();
 });
