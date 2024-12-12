@@ -1,0 +1,109 @@
+{
+    "hamburguesas": [
+      {
+        "nombre": "Clasica",
+        "descripcion": "Contiene pan de papa, medallon de carne, tomate, lechuga y queso cheddar. Acompañada con papas fritas.",
+        "precio": 9800,
+        "boton": "CLASICA",
+        "imagen": "../IMG/hamburguesa-clasica.jpeg"
+      },
+      {
+        "nombre": "Vegetariana",
+        "descripcion": "Contiene pan de papa, medallon de verduras, pepino, lechuga y queso cheddar x2. Acompañada con papas fritas.",
+        "precio": 9500,
+        "boton": "VEGETARIANA",
+        "imagen": "../IMG/hamburguesa-vegetariana.jpeg"
+      },
+      {
+        "nombre": "Bacon",
+        "descripcion": "Contiene pan de papa, medallon de carne con panceta x2 y queso cheddar x2. Acompañada con papas fritas.",
+        "precio": 11000,
+        "boton": "BACON",
+        "imagen": "../IMG/hamburguesa-bacon.jpeg"
+      },
+      {
+        "nombre": "Pollo",
+        "descripcion": "Contiene pan de papa, medallon de pollo x2 y queso cheddar x2. Acompañada con papas fritas.",
+        "precio": 10000,
+        "boton": "POLLO",
+        "imagen": "../IMG/hamburguesa-pollo.jpeg"
+      },
+      {
+        "nombre": "Cheese",
+        "descripcion": "Contiene pan de papa, medallon de carne x2 y con extra queso cheddar. Acompañada con papas fritas.",
+        "precio": 12000,
+        "boton": "CHEESE",
+        "imagen": "../IMG/hamburguesa-cheese.jpeg"
+      },
+      {
+        "nombre": "Chili",
+        "descripcion": "Contiene pan de papa, medallon de carne x2, pepino,salsa picante y queso cheddar x2, acompanada con papas fritas.",
+        "precio": 12500,
+        "boton": "CHILI",
+        "imagen": "../IMG/hamburguesa-chili.jpeg"
+      },
+      {
+        "nombre": "Blue Cheese",
+        "descripcion": "Contiene pan de papa, lechuga, medallon de carne x2 y queso azul. Acompañada con papas fritas",
+        "precio": 10500,
+        "boton": "BLUECHEESE",
+        "imagen": "../IMG/hamburguesa-bluecheese.jpeg"
+      },
+      {
+        "nombre": "BBQ",
+        "descripcion": "Contiene pan de papa, medallon de carne x2, salsa BBQ y queso cheddar x2. Acompañada con papas fritas.",
+        "precio": 11500,
+        "boton": "BBQ",
+        "imagen": "../IMG/hamburguesa-bbq.jpeg"
+      },
+      {
+        "nombre": "Big Burguer",
+        "descripcion": "Contiene pan de papa, medallon de carne x3, cebolla caramelizada, bacon y queso cheddar x3. Acompañada con papas fritas.",
+        "precio": 13000,
+        "boton": "BIG-BURGUER",
+        "imagen": "../IMG/hamburguesa-bigburguer.jpeg"
+      }
+    ],
+    "extras": [
+      {
+        "nombre": "Medallon de carne",
+        "descripcion": "Agrega un medallon de carne",
+        "precio": 1000
+      },
+      {
+        "nombre": "Medallon de pollo",
+        "descripcion": "Agrega un medallon de pollo",
+        "precio": 1000
+      },
+      {
+        "nombre": "Nuggets",
+        "descripcion": "Agrega Nuggets x12",
+        "precio": 1000
+      },
+      {
+        "nombre": "Cebolla caramelizada",
+        "descripcion": "Agrega cebolla caramelizada",
+        "precio": 1000
+      },
+      {
+        "nombre": "Bacon",
+        "descripcion": "Agrega panceta",
+        "precio": 1000
+      },
+      {
+        "nombre": "Papas con queso cheddar",
+        "descripcion": "Agrega papas con queso cheddar",
+        "precio": 1000
+      },
+      {
+        "nombre": "Salsa BBQ",
+        "descripcion": "Agrega salsa BBQ",
+        "precio": 1000
+      },
+      {
+        "nombre": "Salsa picante",
+        "descripcion": "Agrega salsa picante",
+        "precio": 1000
+      }
+    ]
+  }
