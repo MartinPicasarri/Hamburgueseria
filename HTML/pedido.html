@@ -13,7 +13,7 @@
 
     <main>
         <div id="datos-registro">
-            <form id="registro-form">
+            <form>
                 <h2>REGISTRO</h2>    
                 <input type="text" placeholder="Nombre (Obligatorio)"> 
                 <input type="text" placeholder="Ubicacion (Obligatorio)">
@@ -21,7 +21,8 @@
                 <textarea name="" id="" placeholder="(Si agrego un extra especifique en que hamburguesa)"></textarea>
                 <input type="submit" class="button" value="COMPRAR">
             </form>
-            <div id="total-pedido"></div>
+            <div id="total-pedido">Total a pagar: $<span id="total-amount">0</span></div>
+            <div id="detalles-pedido"></div>
         </div>
     </main>
 
