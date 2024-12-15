@@ -92,14 +92,15 @@ function crearMenuHamburguesas() {
         const hamburguesaElement = document.createElement('div');
         hamburguesaElement.className = 'hamburguesa-item';
         hamburguesaElement.innerHTML = `
-            <h3>${hamburguesa.nombre}</h3>
-            <p>${hamburguesa.descripcion}</p>
-            <p>Precio: $${hamburguesa.precio}</p>
-            <img src="${hamburguesa.imagen}" alt="${hamburguesa.nombre}" style="width: 100px; height: auto;">
-            <div class="botones-carrito">
+           <div class="hamburgusa-detalles">
+                <h3>-${hamburguesa.nombre}-$${hamburguesa.precio}</h3>
+                <p>-${hamburguesa.descripcion}</p>
+            </div>
+            <div class= "botones-carrito">
                 <button class="agregar">+</button>
                 <span class="cantidad">${carrito.obtenerCantidad(hamburguesa)}</span>
                 <button class="quitar">-</button>
+                <img src="${hamburguesa.imagen}" alt="${hamburguesa.nombre}">
             </div>
         `;
         menuHamburguesasElement.appendChild(hamburguesaElement);

@@ -93,38 +93,36 @@ h1 {
 }
 
 /*MENU DE HAMBURGUESAS*/
-.btn-primary {
-    width: 100%;
-    margin-block: 2rem;
-    height: 5rem;
-    font-size: 2rem;
+.hamburguesa-item {
+    height: 12rem;
+    background: gray;
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
 }
 
-.hamburguesa-detalles {
-    height: 0;
-    overflow: hidden;
-    transition: height 0.3s ease-in-out;
-    background-color: gray;
+.hamburguesa-item h3 {
+    width: 65rem;
+    background: #000000;
+    color: white;
+    font-size: 3rem;
+    font-family: fantasy;
 }
 
-.hamburguesa-detalles p {
-    font-size: 1rem;
+.hamburguesa-item p {
     font-family: cursive;
+    font-size: 1.2rem;
 }
 
-.mostrar-detalles {
-    height: auto;
-}
-
-img {
+.botones-carrito img {
     width: 12rem;
     height: 12rem;
-    float: inline-end;
-    margin-right: 1rem;
 }
 
 /*MENU DE EXTRAS*/
 #menu-extras {
+    margin-top: 3rem;
     margin-left: 1rem;
     background-color: gray;
     width: fit-content;
@@ -194,17 +192,26 @@ img {
 /*BOTONES CARRITO*/
 .botones-carrito {
     text-align: end;
-    margin-right: 7rem;
+    justify-self: center;
+    align-items: center;
 }
 
-.btn-quitar {
+.quitar {
     width: 3rem;
+    height: 3rem;
+   /* margin-right: 1rem;*/
     background-color: rgb(182, 39, 39);
 }
 
-.btn-agregar {
+.agregar {
     width: 3rem;
+    height: 3rem;
     background-color: green;
+}
+
+.cantidad {
+    width: 1rem;
+    text-align-last: center;
 }
 
 /*FOOTER*/
