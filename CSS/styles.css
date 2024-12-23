@@ -134,6 +134,10 @@ h1 {
     justify-self: center;
 }
 
+#menu-extras p {
+    font-family: cursive;
+}
+
 /*PAGINA CONTACTO*/
 #grilla-contactanos {
     margin-top: 3rem;

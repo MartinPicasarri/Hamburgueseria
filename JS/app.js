@@ -97,9 +97,9 @@ function crearMenuHamburguesas() {
                 <p>-${hamburguesa.descripcion}</p>
             </div>
             <div class= "botones-carrito">
-                <button class="agregar">+</button>
-                <span class="cantidad">${carrito.obtenerCantidad(hamburguesa)}</span>
                 <button class="quitar">-</button>
+                <span class="cantidad">${carrito.obtenerCantidad(hamburguesa)}</span>
+                <button class="agregar">+</button>
                 <img src="${hamburguesa.imagen}" alt="${hamburguesa.nombre}">
             </div>
         `;
@@ -133,9 +133,9 @@ function crearMenuExtras() {
             <p>${extra.descripcion}</p>
             <p>Precio: $${extra.precio}</p>
             <div class="botones-carrito">
-                <button class="agregar">+</button>
-                <span class="cantidad">${carrito.obtenerCantidad(extra)}</span>
                 <button class="quitar">-</button>
+                <span class="cantidad">${carrito.obtenerCantidad(extra)}</span>
+                <button class="agregar">+</button>
             </div>
         `;
         menuExtrasElement.appendChild(extraElement);
@@ -265,8 +265,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             const totalGastado = carrito.calcularTotal();
             mensajePedido += `\nTotal a pagar: $${totalGastado}`;
-            
-            alert(mensajePedido);
             
             carrito.vaciarCarrito();
             window.location.href = '../index.html';
