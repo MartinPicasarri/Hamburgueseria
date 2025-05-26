@@ -16,7 +16,7 @@ nav {
 
 .dropdown-menu {
     height: 3rem;
-    width: 15rem;
+    width: 16rem;
     background: gray;
 }
 
@@ -63,14 +63,13 @@ h1 {
 
 #total-carrito {
     right: 25rem;
-    position: fixed;
+    display: contents;
     font-size: 2rem;
     background: white;
     color: #000000;
 }
 
 #vaciar-carrito {
-    position: fixed;
     font-size: 2rem;
     background: white;
     color: #000000;

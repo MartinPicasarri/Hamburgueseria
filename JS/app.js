@@ -92,7 +92,7 @@ function crearMenuHamburguesas() {
         const hamburguesaElement = document.createElement('div');
         hamburguesaElement.className = 'hamburguesa-item';
         hamburguesaElement.innerHTML = `
-           <div class="hamburgusa-detalles">
+            <div class="hamburgusa-detalles">
                 <h3>-${hamburguesa.nombre}-$${hamburguesa.precio}</h3>
                 <p>-${hamburguesa.descripcion}</p>
             </div>
@@ -159,15 +159,15 @@ async function cargarProductos() {
     try {
         const response = await fetch('../productos.json');
         const data = await response.json();
-        
+
         menuHamburguesa = data.hamburguesas.map(h => new Hamburguesa(h.nombre, h.descripcion, h.precio, h.boton, h.imagen));
         menuExtras = data.extras.map(e => new Extras(e.nombre, e.descripcion, e.precio));
-        
+
         if (document.getElementById('menu-hamburguesas')) {
             crearMenuHamburguesas();
             crearMenuExtras();
         }
-        
+
         actualizarTotalCarrito();
         actualizarTotalPedido();
     } catch (error) {
@@ -205,7 +205,7 @@ function actualizarTotalPedido() {
 
 document.addEventListener('DOMContentLoaded', async () => {
     await cargarProductos();
-    
+
     const vaciarCarritoBtn = document.getElementById('vaciar-carrito');
     if (vaciarCarritoBtn) {
         vaciarCarritoBtn.addEventListener('click', () => {
@@ -238,34 +238,35 @@ document.addEventListener('DOMContentLoaded', async () => {
                 return;
             }
 
-            let mensajePedido = "¡Pedido realizado con éxito!\n\n";
+            let mensajePedido = "¡Tu pedido se realizó correctamente!\n\nDetalles del pedido:\n";
             mensajePedido += `Nombre: ${nombre.value}\n`;
             mensajePedido += `Ubicación: ${ubicacion.value}\n`;
             mensajePedido += `Teléfono: ${telefono.value}\n\n`;
-            
+
             if (textarea.value) {
                 mensajePedido += `Comentarios adicionales: ${textarea.value}\n\n`;
             }
-            
-            mensajePedido += "Tu pedido incluye:\n";
-            
+
+            mensajePedido += "Artículos pedidos:\n";
+
             const itemsCarrito = carrito.obtenerItems();
-            
+
             if (itemsCarrito.length === 0) {
                 mensajePedido += "No hay items en el carrito.\n";
             } else {
-                itemsCarrito.forEach(([nombre, cantidad]) => {
-                    const item = [...menuHamburguesa, ...menuExtras].find(i => i.nombre === nombre);
+                itemsCarrito.forEach(([nombreItem, cantidad]) => {
+                    const item = [...menuHamburguesa, ...menuExtras].find(i => i.nombre === nombreItem);
                     if (item) {
                         const subtotal = item.precio * cantidad;
                         mensajePedido += `${cantidad}x ${item.nombre} - $${subtotal}\n`;
                     }
                 });
             }
-            
+
             const totalGastado = carrito.calcularTotal();
             mensajePedido += `\nTotal a pagar: $${totalGastado}`;
-            
+
+            alert(mensajePedido);
             carrito.vaciarCarrito();
             window.location.href = '../index.html';
         });
